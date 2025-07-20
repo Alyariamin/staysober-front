@@ -95,7 +95,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
   const login = async (username: string, password: string) => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/auth/jwt/create", {
+      const response = await fetch("https://mysite-f1ym.onrender.com/auth/jwt/create", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -121,7 +121,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     username: string  
   ) => {
     try {
-      await fetch("http://127.0.0.1:8000/auth/users/", {
+      await fetch("https://mysite-f1ym.onrender.com/auth/users/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -151,7 +151,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const refreshTokenValue = localStorage.getItem("refreshToken");
       if (!refreshTokenValue) throw new Error("No refresh token");
 
-      const response = await fetch('http://127.0.0.1:8000/auth/jwt/refresh', {
+      const response = await fetch('https://mysite-f1ym.onrender.com/auth/jwt/refresh', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ refresh: refreshTokenValue })
