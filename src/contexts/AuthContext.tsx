@@ -160,6 +160,16 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
         const errorData = await response.json();
 
         // Handle password validation errors
+        
+        if (errorData.username) {
+          const usernameErrors = Array.isArray(errorData.username)
+            ? errorData.username.join(" ")
+            : errorData.username;
+          if (usernameErrors.includes("already")) {
+            throw new Error("User with this Username already exists.");
+          }
+          throw new Error(usernameErrors);
+        }
         if (errorData.email) {
           const emailErrors = Array.isArray(errorData.email)
             ? errorData.email.join(" ")
