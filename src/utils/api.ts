@@ -80,11 +80,11 @@ export const journalAPI = {
     method: 'POST',
     body: JSON.stringify(entry),
   }),
-  updateEntry: (id: string, entry: any) => apiRequest(`/app/journals/${id}//`, {
+  updateEntry: (id: string, entry: any) => apiRequest(`/app/journals/${id}/`, {
     method: 'PATCH',
     body: JSON.stringify(entry),
   }),
-  deleteEntry: (id: string) => apiRequest(`/app/journals/${id}//`, {
+  deleteEntry: (id: string) => apiRequest(`/app/journals/${id}/`, {
     method: 'DELETE',
   }),
 };
@@ -96,11 +96,11 @@ export const goalsAPI = {
     method: 'POST',
     body: JSON.stringify(goal),
   }),
-  updateGoal: (id: string, goal: any) => apiRequest(`/app/goals/${id}//`, {
+  updateGoal: (id: string, goal: any) => apiRequest(`/app/goals/${id}/`, {
     method: 'PATCH',
     body: JSON.stringify({completed:goal.completed}),
   }),
-  deleteGoal: (id: string) => apiRequest(`/app/goals/${id}//`, {
+  deleteGoal: (id: string) => apiRequest(`/app/goals/${id}/`, {
     method: 'DELETE',
   }),
 };
