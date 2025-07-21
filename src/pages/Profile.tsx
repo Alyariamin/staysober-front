@@ -405,7 +405,7 @@ const Profile: React.FC = () => {
                 </div>
               </div>
 
-              <div className="flex items-center">
+              {/* <div className="flex items-center">
                 <input
                   id="notifications"
                   type="checkbox"
@@ -422,7 +422,7 @@ const Profile: React.FC = () => {
                     Enable notifications
                   </div>
                 </label>
-              </div>
+              </div> */}
 
               <div className="pt-4">
                 <button
