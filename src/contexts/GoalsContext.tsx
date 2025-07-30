@@ -53,8 +53,6 @@ export const GoalsProvider: React.FC<GoalsProviderProps> = ({ children }) => {
       setLoading(true);
       setError(null);
       const data = await goalsAPI.getGoals();
-      console.log(data);
-      console.log("atat");
       setGoals(data);
     } catch (err) {
       setError("Failed to load goals");
@@ -81,14 +79,6 @@ export const GoalsProvider: React.FC<GoalsProviderProps> = ({ children }) => {
   ) => {
     try {
       setError(null);
-      console.log("yooo");
-      // console.log(
-      //   JSON.stringify({
-      //     ...goal, // Spread all existing properties
-      //     target_date: goal.targetDate, // Add the transformed field
-      //     targetDate: undefined, // Remove the original field (optional)
-      //   })
-      // );
       const newGoal = await goalsAPI.createGoal(goal);
       setGoals((prevGoals) => [newGoal, ...prevGoals]);
     } catch (err) {

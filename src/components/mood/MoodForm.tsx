@@ -55,19 +55,13 @@ const MoodForm: React.FC<MoodFormProps> = ({ onComplete, editingEntry, selectedD
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
     const entryDate = selectedDate || new Date().toISOString();
-    
-    const entryData = {
-      date: editingEntry ? editingEntry.date : entryDate,
-      mood,
-      energy,
+    const entryData = {date: editingEntry ? editingEntry.date : entryDate,mood,energy,
       anxiety,
       sleep,
       notes,
       activities,
     };
-
     if (editingEntry) {
       updateMoodEntry(editingEntry.id, entryData);
     } else {
@@ -78,7 +72,6 @@ const MoodForm: React.FC<MoodFormProps> = ({ onComplete, editingEntry, selectedD
         return;
       }
     }
-
     onComplete();
   };
 

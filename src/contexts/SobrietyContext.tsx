@@ -50,7 +50,6 @@ export const SobrietyProvider: React.FC<SobrietyProviderProps> = ({ children }) 
   useEffect(() => {
     const loadUserProfile = async () => {
       try {
-        // setIsLoading(true);
         const profile = await userAPI.getStats();
         if (profile.start_date) {
           const date = new Date(profile.start_date);
@@ -122,8 +121,7 @@ export const SobrietyProvider: React.FC<SobrietyProviderProps> = ({ children }) 
   const setSobrietyDateWithAPI = async (date: Date | null) => {
     try {
       if (date) {        
-        await userAPI.updateSobrietyDate(date.toISOString());
-        // console.log(date.toISOString());
+        await userAPI.updateSobrietyDate(date.toISOString().replace(/\.\d{3}Z$/, 'Z'));
         
       }
       // Update local state after successful API call
@@ -139,13 +137,9 @@ export const SobrietyProvider: React.FC<SobrietyProviderProps> = ({ children }) 
   const setDailyCostWithAPI = async (cost: number) => {
     try {
       await userAPI.updateDailyCost(cost);
-      // Update local state after successful API call
       setDailyCost(cost);
     } catch (error) {
       console.error('Failed to update daily cost:', error);
-      // Still update local state for offline functionality
-      // setDailyCost(cost);
-      // You could show a toast notification here about the sync failure
     }
   };
 
@@ -155,6 +149,7 @@ export const SobrietyProvider: React.FC<SobrietyProviderProps> = ({ children }) 
       await setSobrietyDateWithAPI(now);
     }
   };
+  
 
   const celebrateMilestone = (milestone: number) => {
     // Implementation for celebrating milestone achievements

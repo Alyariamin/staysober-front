@@ -79,14 +79,11 @@ export const MoodProvider: React.FC<MoodProviderProps> = ({ children }) => {
   }, [moodEntries]);
 
   const addMoodEntry = async (entry: Omit<MoodEntry, 'id'>) => {
-    // Check if entry already exists for this date
-    const entryDate = entry.date.split('T')[0]; // Get YYYY-MM-DD part
+    const entryDate = entry.date.split('T')[0]; 
     const existingEntry = getMoodForDate(entryDate);
-    
     if (existingEntry) {
       throw new Error('A mood entry already exists for this date. Please edit the existing entry instead.');
     }
-    
     try {
       setError(null);
       const newEntry = await moodAPI.createMoodEntry(entry);

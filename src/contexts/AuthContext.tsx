@@ -180,7 +180,6 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
           throw new Error(emailErrors);
         }
         if (errorData.password) {
-          console.log(errorData);
           const passwordErrors = Array.isArray(errorData.password)
             ? errorData.password.join(" ")
             : errorData.password;

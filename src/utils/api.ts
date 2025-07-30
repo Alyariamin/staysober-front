@@ -1,8 +1,7 @@
 // API utility functions for making authenticated requests
 
-// const API_BASE_URL ='http://127.0.0.1:8000';
 const API_BASE_URL ='https://mysite-f1ym.onrender.com';
-// Helper function to get auth headers
+// const API_BASE_URL ='http://127.0.0.1:8000';
 const getAuthHeaders = () => {
   const token = localStorage.getItem('accessToken');
   return {
@@ -123,7 +122,8 @@ export const habitsAPI = {
     method: 'POST',
     body: JSON.stringify({ date }),
   }),
-  isHabitCompleted: (id: string, date: string) => apiRequest(`/app/habits/${id}/completed?date=${date}`),
+  isHabitCompleted: (id: string, date: string) => 
+    apiRequest(`/app/habits/${id}/completed?date=${date}`),
   getHabitStats: (id: string) => apiRequest(`/app/habits/${id}/stats/`),
 };
 
@@ -181,7 +181,8 @@ export const supportAPI = {
 export const userAPI = {
   getProfile: () => apiRequest('/auth/users/me'),
   getStats: () => apiRequest('/app/profiles/me'),
-  updateUser: (data: { first_name: string; last_name: string ; email:string})=> apiRequest('/auth/users/me/', {
+  updateUser: (data: { first_name: string; last_name: string ; email:string})=> 
+    apiRequest('/auth/users/me/', {
     method: 'PATCH',
           headers: { 'Content-Type': 'application/json' },
 
@@ -201,4 +202,11 @@ export const userAPI = {
     method: 'PATCH', 
     body: JSON.stringify({ saved_money: cost }),
   }),
+
+  changePassword: (data: { old_password: string; new_password: string }) => 
+    apiRequest('/auth/change-password/', {
+      method: 'POST',
+      body: JSON.stringify(data),
+    }),
+
 };

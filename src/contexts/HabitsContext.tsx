@@ -46,7 +46,6 @@ export const HabitsProvider: React.FC<HabitsProviderProps> = ({ children }) => {
       setLoading(true);
       setError(null);
       const data = await habitsAPI.getHabits();
-      console.log("mydata",data);
       setHabits(data);
     } catch (err) {
       setError('Failed to load habits');
@@ -82,10 +81,7 @@ export const HabitsProvider: React.FC<HabitsProviderProps> = ({ children }) => {
   const addHabit = async (habit: Omit<Habit, 'id' | 'streak' | 'createdAt'>) => {
     try {
       setError(null);
-      console.log('create',habit)
       const newHabit = await habitsAPI.createHabit(habit);
-      console.log('success',newHabit);
-      
       setHabits(prevHabits => [newHabit, ...prevHabits]);
     } catch (err) {
       setError('Failed to create habit');
@@ -129,18 +125,12 @@ export const HabitsProvider: React.FC<HabitsProviderProps> = ({ children }) => {
   const toggleHabit = async (id: string, date: string) => {
     try {
       setError(null);
-      console.log("datemanam");
-      console.log(JSON.stringify({ date }));
-      const response = await habitsAPI.toggleHabit(id, date);
-      
-      // Update the habit with new streak from backend
+      const response = await habitsAPI.toggleHabit(id, date);      
       setHabits(prevHabits => 
         prevHabits.map(habit => 
           habit.id === id ? { ...habit, streak: response.streak } : habit
         )
       );
-      
-      // Update completion cache
       const cacheKey = `${id}-${date}`;
       setCompletionCache(prev => ({
         ...prev,
@@ -169,7 +159,6 @@ export const HabitsProvider: React.FC<HabitsProviderProps> = ({ children }) => {
       await habitsAPI.deleteHabit(id);
       setHabits(prevHabits => prevHabits.filter(habit => habit.id !== id));
       
-      // Clear completion cache for this habit
       setCompletionCache(prev => {
         const newCache = { ...prev };
         Object.keys(newCache).forEach(key => {

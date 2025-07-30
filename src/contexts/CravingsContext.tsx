@@ -74,7 +74,6 @@ export const CravingsProvider: React.FC<CravingsProviderProps> = ({ children }) 
   const addCraving = async (craving: Omit<CravingEntry, 'id'>) => {
     try {
       setError(null);
-      console.log(craving);
       const newCraving = await cravingsAPI.createCraving(craving);
       setCravings(prevCravings => [newCraving, ...prevCravings]);
     } catch (err) {

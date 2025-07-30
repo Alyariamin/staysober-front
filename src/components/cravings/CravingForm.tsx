@@ -38,19 +38,10 @@ const CravingForm: React.FC<CravingFormProps> = ({ onComplete, editingId }) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!trigger.trim()) return;
-    
-    const cravingData = {
-      intensity,
-      trigger,
-      location,
-      copingStrategy,
-      notes,
-      duration,
+    const cravingData = {intensity,trigger,location,copingStrategy,notes,duration,
       overcome
     };
-
     if (editingId) {
       updateCraving(editingId, cravingData);
     } else {
@@ -59,7 +50,6 @@ const CravingForm: React.FC<CravingFormProps> = ({ onComplete, editingId }) => {
         date: new Date().toISOString()
       });
     }
-    
     onComplete();
   };
 

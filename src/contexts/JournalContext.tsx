@@ -51,12 +51,10 @@ export const JournalProvider: React.FC<JournalProviderProps> = ({
       setLoading(true);
       setError(null);
       const data = await journalAPI.getEntries();
-      console.log(data);
       setEntries(data);
     } catch (err) {
       setError("Failed to load journal entries");
       console.error("Error loading entries:", err);
-      // Fallback to localStorage if backend fails
       const savedEntries = localStorage.getItem("journalEntries");
       if (savedEntries) {
         setEntries(JSON.parse(savedEntries));
@@ -76,8 +74,6 @@ export const JournalProvider: React.FC<JournalProviderProps> = ({
   const addEntry = async (entry: Omit<JournalEntry, "id" | "date">) => {
     try {
       setError(null);
-      console.log("helo");
-      console.log(entry);
       const newEntry = await journalAPI.createEntry(entry);
       setEntries((prevEntries) => [newEntry, ...prevEntries]);
     } catch (err) {
