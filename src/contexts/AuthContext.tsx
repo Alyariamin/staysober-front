@@ -108,7 +108,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     clearAuthError();
     try {
       const response = await fetch(
-        "https://mysite-f1ym.onrender.com/auth/jwt/create",
+        "https://staysober.onrender.com/auth/jwt/create",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -142,7 +142,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     clearAuthError();
     try {
       const response = await fetch(
-        "https://mysite-f1ym.onrender.com/auth/users/",
+        "https://staysober.onrender.com/auth/users/",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -220,7 +220,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       if (!refreshTokenValue) throw new Error("No refresh token");
 
       const response = await fetch(
-        "https://mysite-f1ym.onrender.com/auth/jwt/refresh",
+        "https://staysober.onrender.com/auth/jwt/refresh",
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
