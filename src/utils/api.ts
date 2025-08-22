@@ -1,6 +1,6 @@
 // API utility functions for making authenticated requests
 
-const API_BASE_URL ='https://mysite-f1ym.onrender.com';
+const API_BASE_URL ='https://staysober.onrender.com';
 // const API_BASE_URL ='http://127.0.0.1:8000';
 const getAuthHeaders = () => {
   const token = localStorage.getItem('accessToken');
